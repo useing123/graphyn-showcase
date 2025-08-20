@@ -1,75 +1,73 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import TransactionCard from '@/components/TransactionCard';
+import { useContext } from 'react';
+import { TransactionContext } from '@/context/TransactionContext';
+import { FontAwesome } from '@expo/vector-icons';
+import { Button, H1, H4, Progress, Text, View, XStack, YStack } from 'tamagui';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+export default function DashboardScreen() {
+  const { transactions, loading } = useContext(TransactionContext);
 
-export default function HomeScreen() {
+  const todaySpending = transactions
+    .filter((t) => new Date(t.date).toDateString() === new Date().toDateString())
+    .reduce((acc, t) => acc + t.amount, 0);
+
+  const weeklySpending = transactions.reduce((acc, t) => acc + t.amount, 0);
+  const weeklyGoal = 200;
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <YStack flex={1} p="$4" space="$4" bg="$background">
+      {/* Balance */}
+      <YStack>
+        <Text color="$gray10">Current Balance</Text>
+        <H1>$1,234.56</H1>
+      </YStack>
+
+      {/* Today's Spending */}
+      <XStack justifyContent="space-between">
+        <YStack>
+          <Text color="$gray10">Today&apos;s Spending</Text>
+          <H4>${todaySpending.toFixed(2)}</H4>
+        </YStack>
+        <Button icon={<FontAwesome name="plus" />}>Quick Add</Button>
+      </XStack>
+
+      {/* Weekly Spending */}
+      <YStack space="$2">
+        <Text color="$gray10">Weekly Spending</Text>
+        <Progress value={(weeklySpending / weeklyGoal) * 100} bg="$gray4">
+          <Progress.Indicator animation="bouncy" bg="$blue10" />
+        </Progress>
+        <XStack justifyContent="space-between">
+          <Text fontSize={12} color="$gray10">
+            ${weeklySpending.toFixed(2)}
+          </Text>
+          <Text fontSize={12} color="$gray10">
+            ${weeklyGoal}
+          </Text>
+        </XStack>
+      </YStack>
+
+      {/* AI Insight */}
+      <View p="$4" bg="$blue2" borderRadius="$4">
+        <Text>
+          <Text fontWeight="bold">AI Insight:</Text> You&apos;ve spent $55 on shopping this week.
+          Consider reducing impulse purchases.
+        </Text>
+      </View>
+
+      {/* Recent Transactions */}
+      <YStack space="$2" flex={1}>
+        <Text color="$gray10" fontWeight="bold">
+          Recent Transactions
+        </Text>
+        {loading ? (
+          <Text>Loading...</Text>
+        ) : (
+          transactions.slice(0, 5).map((transaction) => (
+            <TransactionCard key={transaction.id} transaction={transaction} />
+          ))
+        )}
+      </YStack>
+    </YStack>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});

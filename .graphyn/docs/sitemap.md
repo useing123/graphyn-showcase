@@ -1,0 +1,119 @@
+# Project Sitemap
+
+- **.expo/**
+  - README.md
+  - **cache/**
+    - **eslint/**
+  - devices.json
+  - **types/**
+    - router.d.ts
+  - **web/**
+    - **cache/**
+      - **production/**
+        - **images/**
+          - **favicon/**
+            - **favicon-24272cdaeff82cc5facdaccd982a6f05b60c4504704bbf94c19a6388659880bb-contain-transparent/**
+- **.vscode/**
+  - settings.json
+- README.md
+- **app/**
+  - **(tabs)/**
+    - _layout.tsx
+    - explore.tsx
+    - index.tsx
+  - +not-found.tsx
+  - _layout.tsx
+- **app-example/**
+  - **app/**
+    - **(tabs)/**
+      - _layout.tsx
+      - chat.tsx
+      - index.tsx
+      - transactions.tsx
+    - +not-found.tsx
+    - _layout.tsx
+  - **components/**
+    - CategorySelector.tsx
+    - Collapsible.tsx
+    - ExternalLink.tsx
+    - HapticTab.tsx
+    - HelloWave.tsx
+    - ParallaxScrollView.tsx
+    - RecurringTransactions.tsx
+    - ThemedText.tsx
+    - ThemedView.tsx
+    - **ui/**
+      - **Animations/**
+        - index.tsx
+      - **Button/**
+        - index.tsx
+      - **Charts/**
+        - index.tsx
+      - IconSymbol.ios.tsx
+      - IconSymbol.tsx
+      - **Input/**
+        - index.tsx
+      - **Responsive/**
+        - index.tsx
+      - TabBarBackground.ios.tsx
+      - TabBarBackground.tsx
+      - **Text/**
+        - index.tsx
+      - **View/**
+        - index.tsx
+      - index.tsx
+  - **constants/**
+    - Colors.ts
+    - Typography.ts
+  - **hooks/**
+    - useColorScheme.ts
+    - useColorScheme.web.ts
+    - useThemeColor.ts
+    - useTransactions.ts
+  - **scripts/**
+    - reset-project.js
+- app.json
+- **assets/**
+  - **fonts/**
+  - **images/**
+- **components/**
+  - Collapsible.tsx
+  - ExternalLink.tsx
+  - HapticTab.tsx
+  - HelloWave.tsx
+  - ParallaxScrollView.tsx
+  - ThemedText.tsx
+  - ThemedView.tsx
+  - **ui/**
+    - **Animations/**
+    - **Button/**
+    - **Charts/**
+    - IconSymbol.ios.tsx
+    - IconSymbol.tsx
+    - **Input/**
+    - **Responsive/**
+    - TabBarBackground.ios.tsx
+    - TabBarBackground.tsx
+    - **Text/**
+    - **View/**
+- **constants/**
+  - Colors.ts
+- eslint.config.js
+- expo-env.d.ts
+- **hooks/**
+  - useColorScheme.ts
+  - useColorScheme.web.ts
+  - useThemeColor.ts
+- package-lock.json
+- package.json
+- **scripts/**
+  - reset-project.js
+- **services/**
+- tsconfig.json
+- **types/**
+
+## Key Files
+
+- package.json
+- tsconfig.json
+- README.md
