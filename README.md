@@ -1,50 +1,49 @@
-# Welcome to your Expo app 👋
+# How to Run This Project
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This document provides instructions on how to set up and run both the frontend and backend of this application.
 
-## Get started
+## Frontend (React Native with Expo)
 
-1. Install dependencies
+The frontend is a React Native application built with Expo.
 
-   ```bash
-   npm install
-   ```
+### Prerequisites
 
-2. Start the app
+*   [Node.js](https://nodejs.org/) (LTS version recommended)
+*   [Expo Go](https://expo.dev/go) app on your mobile device (for testing on a physical device) or an Android/iOS simulator.
 
-   ```bash
-   npx expo start
-   ```
+### Setup and Running
 
-In the output, you'll find options to open the app in a
+1.  **Install dependencies:**
+    Open a terminal in the project root directory (`graphyn-showcase`) and run:
+    ```bash
+    npm install
+    ```
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+2.  **Start the development server:**
+    After the installation is complete, start the Expo development server by running:
+    ```bash
+    npm start
+    ```
+    This will open a new tab in your web browser with the Expo Developer Tools.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+3.  **Run the app:**
+    *   **On a physical device:** Scan the QR code from the Expo Developer Tools using the Expo Go app on your iOS or Android phone.
+    *   **On an iOS Simulator:** Press `i` in the terminal where the development server is running.
+    *   **On an Android Emulator:** Press `a` in the terminal where the development server is running.
+    *   **In a web browser:** Press `w` in the terminal.
 
-## Get a fresh project
+## Backend (Encore)
 
-When you're ready, run:
+The backend is an Encore project. For detailed instructions on how to set up and run the backend, please refer to the `README.md` file in the backend repository.
 
-```bash
-npm run reset-project
-```
+*   **Backend Repository:** [https://github.com/useing123/encore_dev_backend_showcase](https://github.com/useing123/encore_dev_backend_showcase)
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Project Feedback
 
-## Learn more
+Here are some thoughts on the development process and the project itself:
 
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+> Claude code nice but console interface worst than launching this app with vscode extentions,
+>
+> I can run graphyn it helps me outline first project architecture and stack picking but when we code solution, we have many bugs and it looped on basic errors and I need to help with another tools, and claude code doenst have access to mcp server that will do life harder
+>
+> It was fun task, I decided to do mobile finance tracking app + Ai agent that will help with tracking, easy to bootstrap project and we can implement more ai features but now I do only chat interface, in future we can add ai powered roast, ai powered fill of transactions, ai powered prediction(we need specific dataset)

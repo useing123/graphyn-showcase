@@ -1,17 +1,29 @@
 export interface Transaction {
-  id: string;
+  id: number;
   amount: number;
   category: string; // Corresponds to Category['name']
   description?: string;
-  date: number; // Using timestamp for simplicity
+  timestamp: string; // Using timestamp for simplicity
 }
 
 export interface Category {
-  id: string;
+  id: number;
   name: string;
-  icon: string; // Icon name from a library like lucide-react-native
 }
 
 export interface UserData {
   balance: number;
+}
+export interface ChatMessage {
+  id: string;
+  sender: 'user' | 'bot';
+  text: string;
+  timestamp: string;
+}
+
+export interface Insight {
+  id: string;
+  title: string;
+  content: string;
+  date: number; // Using timestamp for simplicity
 }

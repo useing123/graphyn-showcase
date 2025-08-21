@@ -5,13 +5,14 @@ import {
   Input,
   Label,
   Select,
+  Sheet,
   Switch,
-  Text,
   TextArea,
   XStack,
   YStack,
+  Adapt,
+  H1,
 } from 'tamagui';
-import { MOCK_CATEGORIES } from '@/constants/mock';
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons';
 import { TransactionContext } from '@/context/TransactionContext';
 import { useRouter } from 'expo-router';
@@ -21,18 +22,16 @@ export default function AddScreen() {
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
   const [isRecurring, setIsRecurring] = useState(false);
-  const { addTransaction } = useContext(TransactionContext);
+  const { addTransaction, categories } = useContext(TransactionContext);
   const router = useRouter();
 
   const handleSubmit = async () => {
     if (!amount || !category) {
-      // Basic validation
       return;
     }
     await addTransaction({
       amount: parseFloat(amount),
       category,
-      date: Date.now(),
       description,
     });
     router.push('/(tabs)');
@@ -40,9 +39,7 @@ export default function AddScreen() {
 
   return (
     <YStack flex={1} padding="$4" space="$4">
-      <Text fontSize={24} fontWeight="bold" textAlign="center" marginBottom="$4">
-        Add Transaction
-      </Text>
+      <H1>Add Transaction</H1>
       <Form>
         <YStack space="$2">
           <Label>Amount</Label>
@@ -60,14 +57,38 @@ export default function AddScreen() {
             <Select.Trigger iconAfter={ChevronDown}>
               <Select.Value placeholder="Select a category" />
             </Select.Trigger>
+
+            <Adapt when="sm" platform="touch">
+              <Sheet
+                native
+                modal
+                dismissOnSnapToBottom
+                animationConfig={{
+                  type: 'spring',
+                  damping: 20,
+                  mass: 1.2,
+                  stiffness: 250,
+                }}
+              >
+                <Sheet.Frame padding="$4" gap="$4">
+                  <Adapt.Contents />
+                </Sheet.Frame>
+                <Sheet.Overlay
+                  animation="lazy"
+                  enterStyle={{ opacity: 0 }}
+                  exitStyle={{ opacity: 0 }}
+                />
+              </Sheet>
+            </Adapt>
+
             <Select.Content>
               <Select.ScrollUpButton>
                 <ChevronUp />
               </Select.ScrollUpButton>
               <Select.Viewport>
                 <Select.Group>
-                  {MOCK_CATEGORIES.map((cat, index) => (
-                    <Select.Item key={cat.id} index={index} value={cat.name}>
+                  {categories.map((cat, index) => (
+                    <Select.Item key={cat.id} value={cat.name} index={index}>
                       <Select.ItemText>{cat.name}</Select.ItemText>
                     </Select.Item>
                   ))}
